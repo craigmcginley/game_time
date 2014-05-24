@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= @team %></title>
+    <meta charset="utf-8">
+    <title><%= @team %> Stats </title>
     <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-  <h3><%= @team %></h3>
-  <ul>
-    <% @team_stats.each do |team, stats| %>
-      <% if team == @team %>
-        <li>Wins: <%= stats[:wins] %></li>
-        <li>Losses: <%= stats[:losses] %></li>
-        <li>Ties: <%= stats[:ties] %></li>
-        <li>Games Played:</li>
-          <ol>
-            <% stats[:games].each do |game| %>
-              <li>
-                <ul>
-                  <% if game[:home_team] == team %>
-                    <li>Home vs <%= game[:away_team] %>
-                    <br>
-                      <% if game[:winner] == team %>
-                        Won - <%= game[:home_score] %> to <%= game[:away_score] %>
-                      <% else %>
-                        Lost - <%= game[:away_score] %> to <%= game[:home_score] %>
-                      <% end %>
-                    </li>
-                  <% else %>
-                    <li>Away vs <%= game[:home_team] %>
-                    <br>
-                      <% if game[:winner] == team %>
-                        Won - <%= game[:away_score] %> to <%= game[:home_score] %>
-                      <% else %>
-                        Lost - <%= game[:home_score] %> to <%= game[:away_score] %>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              </li>
-            <% end %>
-          </ol>
-      <% end %>
-    <% end %>
-  </ul>
 
-  <a href="/leaderboard">Back to Leaderboard</a>
+    <div class="top1">
+      <ul class="logo">
+        <li><img src="nfl-logo.png" class="logo"></li>
+        <li id="leader">Leaderboard</li>
+      </ul>
+    </div>
+
+    <h3><%= @team %></h3>
+    <ul>
+      <% @team_stats.each do |team, stats| %>
+        <% if team == @team %>
+          <li>Wins: <%= stats[:wins] %></li>
+          <li>Losses: <%= stats[:losses] %></li>
+          <li>Ties: <%= stats[:ties] %></li>
+          <li>Games Played:</li>
+            <ol>
+              <% stats[:games].each do |game| %>
+                <li>
+                  <% if game[:home_team] == team %>
+                    Home vs <%= game[:away_team] %>
+                    <br>
+                    <% if game[:winner] == team %>
+                      Won - <%= game[:home_score] %> to <%= game[:away_score] %>
+                    <% else %>
+                      Lost - <%= game[:away_score] %> to <%= game[:home_score] %>
+                    <% end %>
+                  <% else %>
+                    Away vs <%= game[:home_team] %>
+                    <br>
+                    <% if game[:winner] == team %>
+                      Won - <%= game[:away_score] %> to <%= game[:home_score] %>
+                    <% else %>
+                      Lost - <%= game[:home_score] %> to <%= game[:away_score] %>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ol>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <a href="/leaderboard">Back to Leaderboard</a>
 
   </body>
 

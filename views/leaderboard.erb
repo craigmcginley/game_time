@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>NFL Stats</title>
+    <meta charset="utf-8">
+    <title>NFL Leaderboard</title>
     <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
 
-  <h2>Leaderboard</h2>
+  <audio controls>
+    <source src="nfl_theme.mp3" type="audio/mpeg">
+    <embed height="50" width="100" src="nfl_theme.mp3">
+  </audio>
 
-    <ul>
-      <% @team_stats.each do |team, stats| %>
-        <li>
-          <b><a href="/teams/<%= team %>"><%= team %></a></b>:
-          <ul>
-            <li>Wins:<%= stats[:wins] %></li>
-            <li>Losses:<%= stats[:losses] %></li>
-            <li>Ties:<%= stats[:ties] %></li>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
+    <div class="top1">
+      <ul class="logo">
+        <li><img src="nfl-logo.png" class="logo"></li>
+        <li id="leader">Leaderboard</li>
+      </ul>
+    </div>
+
+      <table class="board">
+        <tr class="headers">
+          <th id="teamhead"></th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>Ties</th>
+        </tr>
+        <% @team_stats.each do |team, stats| %>
+        <tr>
+          <td class="team"><a href="/teams/<%= team %>"><%= team %></a></td>
+          <td><%= stats[:wins] %></td>
+          <td><%= stats[:losses] %></td>
+          <td><%= stats[:ties] %></td>
+        </tr>
+        <% end %>
+      </table>
+
+    </div>
 
   </body>
 

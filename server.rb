@@ -83,12 +83,6 @@ get '/teams/:team' do
   @team_stats = compile_data(games)
   @team = params[:team]
 
-  # @team_stats.each do |team|
-  #   if !team.include?(@team)
-  #     redirect '/error'
-  #   end
-  # end
-
   erb :team
 end
 
