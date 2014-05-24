@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pry'
 
 games = [
   {
@@ -65,15 +66,31 @@ def compile_data(games)
   teams.sort_by { |team, stats| [!stats[:wins], stats[:losses]]}
 end
 
+get '/' do
+  redirect '/leaderboard'
+end
 
 get '/leaderboard' do
   @team_stats = compile_data(games)
 
-
   erb :leaderboard
 end
 
+get '/teams/:team' do
+  @team_stats = compile_data(games)
+  @team = params[:team]
 
-# get '/:team' do
+  # @team_stats.each do |team|
+  #   if !team.include?(@team)
+  #     redirect '/error'
+  #   end
+  # end
 
-# end
+  erb :team
+end
+
+get '/error' do
+
+  erb :error
+end
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= @team %></title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+  <h3><%= @team %></h3>
+  <ul>
+    <% @team_stats.each do |team, stats| %>
+      <% if team == @team %>
+        <li>Wins:<%= stats[:wins] %></li>
+        <li>Losses:<%= stats[:losses] %></li>
+        <li>Ties:<%= stats[:ties] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <a href="/leaderboard">Back to Leaderboard</a>
+
+  </body>
+
+</html>

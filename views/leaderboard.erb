@@ -7,10 +7,12 @@
 
   <body>
 
+  <h2>Leaderboard</h2>
+
     <ul>
       <% @team_stats.each do |team, stats| %>
         <li>
-          <b><%= team %></b>:
+          <b><a href="/teams/<%= team %>"><%= team %></a></b>:
           <ul>
             <li>Wins:<%= stats[:wins] %></li>
             <li>Losses:<%= stats[:losses] %></li>
