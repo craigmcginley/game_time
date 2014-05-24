@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title><%= @team %> Stats </title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
 
     <div class="top1">
       <ul class="logo">
-        <li><img src="nfl-logo.png" class="logo"></li>
-        <li id="leader">Leaderboard</li>
+        <li><img src="/<%= @team %>.png" class="logo"></li>
+        <li id="pagetitle"><%= @team %></li>
       </ul>
     </div>
 
@@ -49,8 +49,8 @@
         <% end %>
       <% end %>
     </ul>
-
-    <a href="/leaderboard">Back to Leaderboard</a>
+    <br>
+    <a href="/leaderboard" class="button">Back to Leaderboard</a>
 
   </body>
 
