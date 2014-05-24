@@ -32,13 +32,13 @@ def compile_data(games)
 
   games.each do |game|
     if !teams.has_key?(game[:home_team])
-      teams.store(game[:home_team], {wins: 0,
+      teams.store("#{game[:home_team]}", {wins: 0,
                                     losses: 0,
                                     ties: 0,
                                     games: []})
 
     elsif !teams.has_key?(game[:away_team])
-      teams.store(game[:away_team], {wins: 0,
+      teams.store("#{game[:away_team]}", {wins: 0,
                                     losses: 0,
                                     ties: 0,
                                     games: []})
@@ -47,16 +47,19 @@ def compile_data(games)
 
   games.each do |game|
     if game[:home_score] > game[:away_score]
+      game.store(:winner, "#{game[:home_team]}")
       teams[game[:home_team]][:games] << game
       teams[game[:home_team]][:wins] += 1
       teams[game[:away_team]][:games] << game
       teams[game[:away_team]][:losses] += 1
     elsif game[:away_score] > game[:home_score]
+      game.store(:winner, "#{game[:away_team]}")
       teams[game[:away_team]][:games] << game
       teams[game[:away_team]][:wins] += 1
       teams[game[:home_team]][:games] << game
       teams[game[:home_team]][:losses] += 1
     else
+      game.store(:winner, "None")
       teams[game[:home_team]][:games] << game
       teams[game[:home_team]][:ties] += 1
       teams[game[:away_team]][:games] << game
