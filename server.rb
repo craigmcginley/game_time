@@ -1,3 +1,5 @@
+require 'sinatra'
+
 games = [
   {
     home_team: "Patriots",
@@ -60,14 +62,16 @@ def compile_data(games)
       teams[game[:away_team]][:ties] += 1
     end
   end
-  teams
+  teams.sort_by { |team, stats| [!stats[:wins], stats[:losses]]}
 end
 
-teams_stats = compile_data(games)
 
-# get '/leaderboard' do
+get '/leaderboard' do
+  @team_stats = compile_data(games)
 
-# end
+
+  erb :leaderboard
+end
 
 
 # get '/:team' do

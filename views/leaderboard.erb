@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NFL Stats</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+
+    <ul>
+      <% @team_stats.each do |team, stats| %>
+        <li>
+          <b><%= team %></b>:
+          <ul>
+            <li>Wins:<%= stats[:wins] %></li>
+            <li>Losses:<%= stats[:losses] %></li>
+            <li>Ties:<%= stats[:ties] %></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+
+  </body>
+
+</html>
