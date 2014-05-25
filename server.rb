@@ -32,13 +32,15 @@ def compile_data(games)
 
   games.each do |game|
     if !teams.has_key?(game[:home_team])
-      teams.store("#{game[:home_team]}", {wins: 0,
+      teams.store("#{game[:home_team]}", {
+                                    wins: 0,
                                     losses: 0,
                                     ties: 0,
                                     games: []})
 
     elsif !teams.has_key?(game[:away_team])
-      teams.store("#{game[:away_team]}", {wins: 0,
+      teams.store("#{game[:away_team]}", {
+                                    wins: 0,
                                     losses: 0,
                                     ties: 0,
                                     games: []})
@@ -82,6 +84,15 @@ end
 get '/teams/:team' do
   @team_stats = compile_data(games)
   @team = params[:team]
+
+error_check = []
+@team_stats.each do |team|
+  error_check << team[0]
+end
+
+if !error_check.include?(@team)
+  redirect '/error'
+end
 
   erb :team
 end
