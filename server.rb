@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'pry'
 
 games = [
   {
@@ -27,6 +26,7 @@ games = [
     away_score: 21
   }
 ]
+
 def compile_data(games)
   teams = {}
 
@@ -85,20 +85,19 @@ get '/teams/:team' do
   @team_stats = compile_data(games)
   @team = params[:team]
 
-error_check = []
-@team_stats.each do |team|
-  error_check << team[0]
-end
+  error_check = []
+  @team_stats.each do |team|
+    error_check << team[0]
+  end
 
-if !error_check.include?(@team)
-  redirect '/error'
-end
+  if !error_check.include?(@team)
+    redirect '/error'
+  end
 
   erb :team
 end
 
 get '/error' do
-
   erb :error
 end
 
