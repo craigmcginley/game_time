@@ -37,8 +37,9 @@ def compile_data(games)
                                     losses: 0,
                                     ties: 0,
                                     games: []})
+    end
 
-    elsif !teams.has_key?(game[:away_team])
+    if !teams.has_key?(game[:away_team])
       teams.store("#{game[:away_team]}", {
                                     wins: 0,
                                     losses: 0,
